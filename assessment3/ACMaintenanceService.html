@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Maintenance Service</title>
+
+</head>
+<link rel="stylesheet" href="style.css">
+<body class="body">
+<h1 class="h1">AC Maintenance Service</h1>
+<form id="acServiceForm">
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName" placeholder="Enter your name" required><br><br>
+
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="Male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="Female">
+    <label for="female">Female</label><br><br>
+
+    <label for="mobileNumber">Mobile Number:</label>
+    <input type="tel" id="mobileNumber" placeholder="Enter your mobile number" required pattern="^[789]\d{9}$"><br><br>
+
+    <label for="email">Email ID:</label>
+    <input type="email" id="email" placeholder="Enter your email ID" required><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" placeholder="Enter your address" rows="5" cols="25" required></textarea><br><br>
+
+    <label for="acTypes">AC Type:</label>
+    <input list="acTypes" id="acType" required>
+    <datalist id="acTypes">
+        <option value="Split">
+        <option value="Window">
+        <option value="Centralized">
+        <option value="Portable">
+    </datalist><br><br>
+
+    <label for="serviceType">Service Type:</label>
+    <select id="serviceType" required>
+        <option value="Cleaning">Cleaning</option>
+        <option value="Repair">Repair</option>
+        <option value="Gas Refill">Gas Refill</option>
+    </select><br><br>
+
+    <label for="dateForAppointment">Date for Appointment:</label>
+    <input type="date" id="dateForAppointment" required><br><br>
+
+    <label>
+        <input type="checkbox" id="yearlyMaintenance"> Yearly Maintenance (Select if required)
+    </label><br><br>
+
+    <label for="duration">Duration in months from the previous service:</label>
+    <input type="range" id="duration" min="0" max="6" step="1" title="0 to 6 Months"><br><br>
+
+    <input type="submit" id="submit" value="Submit">
+    <input type="reset" id="reset" value="Clear">
+</form>
+
+<div id="result" class="result"></div>
+<script src="script.js"></script>
+</body>
+</html>

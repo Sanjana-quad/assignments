@@ -1,0 +1,15 @@
+.body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: bisque;
+    text-align: center;
+}
+.h1{
+    text-align: center;
+    background-color: aqua;
+}
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+}
