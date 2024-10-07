@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <!-- Header image -->
+    <h1>Calculator</h1>
+    <img src="calculator.jpg" alt="Calculator" id="headerimg" width="400" height="300">
+
+    <!-- Input fields for numbers -->
+    <form action="#" method="post">
+        <label for="input1">Input1:</label>
+        <input type="number" id="input1" name="input1"><br><br>
+
+        <label for="input2">Input2:</label>
+        <input type="number" id="input2" name="input2"><br><br>
+
+        <!-- Dropdown for operations -->
+        <label for="operation">Select Operation:</label>
+        <select id="operation" name="operation">
+            <option value="ADD">ADD</option>
+            <option value="SUBTRACT">SUBTRACT</option>
+            <option value="MULTIPLY">MULTIPLY</option>
+            <option value="DIVIDE">DIVIDE</option>
+        </select><br><br>
+
+        <!-- Submit and Reset buttons with images -->
+        <input type="image" src="calc.jpg" alt="Submit" width="80" height="80">
+        <input type="image" src="reset.jpg" alt="Reset" width="80" height="80" onclick="this.form.reset();return false;">
+    </form>
+</body>
+</html>
