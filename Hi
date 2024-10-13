@@ -1,0 +1,106 @@
+CREATE TABLE Customers (
+    Customer_id VARCHAR(10) PRIMARY KEY,
+    Customer_name VARCHAR(50),
+    Address VARCHAR(50),
+    Phone_no VARCHAR(15),
+    Email_id VARCHAR(50)
+);
+INSERT INTO Customers (Customer_id, Customer_name, Address, Phone_no, Email_id) VALUES
+('CUST1001', 'THOMAS', 'KOCHI', '9856325486', 'thomas@gmail.com'),
+('CUST1002', 'CHARLES', 'ALLEPY', '9856367486', 'charles@gmail.com'),
+('CUST1003', 'SUDHAKAR', 'KOCHI', '9856323869', 'sudhakar@gmail.com'),
+('CUST1004', 'JAGADISH', 'ERNAKULAM', '9856326666', 'jagadish@gmail.com'),
+('CUST1005', 'ALBERT', 'ALLEPY', '9856328659', 'albert@gmail.com'),
+('CUST1006', 'ASHWIN DAS', 'KANNUR', '9856325659', 'ashwin@gmail.com');
+
+UPDATE Customers
+SET Phone_no = '9876543210'
+WHERE Customer_id = 'CUST1004';
+
+______________
+
+SELECT Customer_id, Customer_name, Address, Phone_no
+FROM Customers
+WHERE Email_id LIKE '%@gmail.com'
+ORDER BY Customer_id;
+
+________________
+
+ALTER TABLE Customers
+ALTER COLUMN Customer_id INT;
+
+_______
+
+CREATE TABLE Customers (
+    Customer_id INT PRIMARY KEY,
+    Customer_name VARCHAR(50),
+    Address VARCHAR(50),
+    Phone_no VARCHAR(15),
+    Email_id VARCHAR(50)
+);
+
+CREATE TABLE Delivery_partners (
+    Partner_id INT PRIMARY KEY,
+    Partner_name VARCHAR(50),
+    Phone_no VARCHAR(15),
+    Rating DECIMAL(2, 1)
+);
+
+CREATE TABLE Hotel_details (
+    Hotel_id INT PRIMARY KEY,
+    Hotel_name VARCHAR(50),
+    Hotel_type VARCHAR(30),
+    Rating DECIMAL(2, 1)
+);
+
+CREATE TABLE Orders (
+    Order_id INT PRIMARY KEY,
+    Customer_id INT,
+    Hotel_id INT,
+    Partner_id INT,
+    Order_date DATE,
+    Order_amount DECIMAL(10, 2),
+    FOREIGN KEY (Customer_id) REFERENCES Customers(Customer_id),
+    FOREIGN KEY (Hotel_id) REFERENCES Hotel_details(Hotel_id),
+    FOREIGN KEY (Partner_id) REFERENCES Delivery_partners(Partner_id)
+);
+
+___________
+
+ALTER TABLE Hotel_Details
+RENAME COLUMN Rating TO Hotel_Rating;
+
+____
+
+SELECT CONCAT(Hotel_name, ' is a ', Hotel_type, ' hotel') AS HOTEL_INFO
+FROM Hotel_details
+ORDER BY HOTEL_INFO DESC;
+
+______
+
+SELECT H.Hotel_id, H.Hotel_name, COUNT(O.Order_id) AS NO_OF_ORDERS
+FROM Hotel_details H
+JOIN Orders O ON H.Hotel_id = O.Hotel_id
+GROUP BY H.Hotel_id, H.Hotel_name
+HAVING COUNT(O.Order_id) > 5
+ORDER BY H.Hotel_id ASC;
+
+______
+
+SELECT H.Hotel_id, H.Hotel_name, H.Hotel_type
+FROM Hotel_details H
+LEFT JOIN Orders O ON H.Hotel_id = O.Hotel_id 
+    AND O.Order_date BETWEEN '2019-05-01' AND '2019-05-31'
+WHERE O.Order_id IS NULL
+ORDER BY H.Hotel_id ASC;
+
+______
+
+SELECT O.Order_id, C.Customer_name, H.Hotel_name, O.Order_amount
+FROM Orders O
+JOIN Customers C ON O.Customer_id = C.Customer_id
+JOIN Hotel_details H ON O.Hotel_id = H.Hotel_id
+ORDER BY O.Order_id ASC;
+
+_______
+
