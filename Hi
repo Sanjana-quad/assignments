@@ -51,3 +51,7 @@ ALTER TABLE Supplier
 ADD CONSTRAINT chk_contact_length 
 CHECK (LEN(Contact) = 10);
 GO
+
+UPDATE pizza
+SET amount = amount - (amount * 0.03)
+WHERE pizza_type = 'Extra Large';
